@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="animation">
-      <change afterPath="$PROJECT_DIR$/src/player/boy_down_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_down_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_left_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_left_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_right_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_right_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_up_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/player/boy_up_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/keycodes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/keycodes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/KeyHanlder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHanlder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +75,14 @@
       <option name="presentableId" value="Default" />
       <updated>1675247692573</updated>
     </task>
+    <task id="LOCAL-00001" summary="animation">
+      <created>1675262711252</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675262711252</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
