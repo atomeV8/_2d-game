@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="" />
+    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/CollisionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/maps/map001.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/maps/world002.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/tiles/dirt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/tiles/sand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/tiles/tree.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,10 +50,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "C:/Users/cp-20mab/Desktop/Nouveau dossier/_2d-game/src/res/player",
+    "last_opened_file_path": "C:/Users/cp-20mab/Desktop/Nouveau dossier/_2d-game/src/res/maps",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -50,6 +64,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\maps" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\player" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\player" />
@@ -88,6 +103,7 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="animation" />
     <option name="LAST_COMMIT_MESSAGE" value="animation" />
   </component>
