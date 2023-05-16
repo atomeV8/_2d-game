@@ -15,11 +15,16 @@ public class Player extends Entity{
     public final int screenX, screenY;
     boolean moving = false;
 
+    public int nbKeys = 0;
+
     public Player(GamePanel gp, KeyHanlder keyHanlder){
         this.gp = gp;
         this.keyHanlder = keyHanlder;
 
         hitbox = new Rectangle(10, 20, 28, 28);
+
+        hitboxDefaultX = hitbox.x;
+        hitboxDefaultY = hitbox.y;
 
         screenX = gp.screenWidth/2 - gp.tileSize/2;
         screenY = gp.screenHeight/2 - gp.tileSize/2;
@@ -72,6 +77,9 @@ public class Player extends Entity{
 
         gp.CC.checkTile(this);
 
+        int objIndex = gp.CC.checkObject(this, true);
+        collisionInteraction(objIndex);
+
         if(collisionOn == false && moving){
             switch(direction){
                 case"up": worldY -= speed; break;
@@ -86,6 +94,40 @@ public class Player extends Entity{
                 else
                     spriteNum = 1;
                 spriteCounter = 0;
+            }
+        }
+    }
+
+    public void collisionInteraction(int index){
+        if(index != 999){
+            String objectName = gp.objs[index].name;
+
+            switch(objectName){
+                case "Key":
+                    nbKeys++;
+                    gp.objs[index] = null;
+                    gp.playSFX(1);
+                    gp.ui.showMessage("You got a KEY!!!");
+                    break;
+                case "Door":
+                    if(nbKeys > 0){
+                        gp.objs[index] = null;
+                        nbKeys--;
+                        gp.ui.showMessage("You opened a DOOR!!!");
+                    }else{
+                        gp.ui.showMessage("You need a key to open a door");
+                    }
+                    break;
+                case "Boots":
+                    speed += 2;
+                    gp.objs[index] = null;
+                    gp.ui.showMessage("You equipped RUNNING BOOTS!!!");
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    //gp.stopMusic();
+                    //gp.playSFX(3); //The sound of the end
+                    break;
             }
         }
     }

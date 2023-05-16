@@ -4,18 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/CollisionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/maps/map001.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/maps/world002.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/tiles/dirt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/tiles/sand.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/tiles/tree.png" afterDir="false" />
+    <list default="true" id="467fa184-7de0-4e76-98fa-2deefb1b2170" name="Changes" comment="ca fait longtemps">
+      <change afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Boots.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Chest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Door.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Key.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/boots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/objects/boots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/objects/chest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/objects/door.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/objects/key.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/coin.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/music.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_2d-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/_2d-game.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/tiles/water.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/water.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +63,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "C:/Users/cp-20mab/Desktop/Nouveau dossier/_2d-game/src/res/maps",
+    "last_opened_file_path": "C:/Users/cp-20mab/Desktop/Nouveau dossier/_2d-game/src/res/sounds",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -64,13 +80,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\sounds" />
+      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\object" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\maps" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\player" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src" />
-      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\player" />
-      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src\res\objects" />
       <recent name="C:\Users\cp-20mab\Desktop\Nouveau dossier\_2d-game\src" />
     </key>
   </component>
@@ -99,13 +116,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675262711252</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ca fait longtemps">
+      <created>1683725832329</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683725832329</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="animation" />
+    <MESSAGE value="ca fait longtemps" />
+    <option name="LAST_COMMIT_MESSAGE" value="ca fait longtemps" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

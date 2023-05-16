@@ -1,6 +1,7 @@
 package main;
 
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -23,13 +24,17 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
     int FPS = 60;
-
+    //SYSTEM
     public CollisionController CC = new CollisionController(this);
-
+    public AssetSetter aSetter = new AssetSetter(this);
     TileManager tileManager = new TileManager(this);
     KeyHanlder keyHanlder = new KeyHanlder();
     Thread gameThread;
     public Player player = new Player(this, keyHanlder);
+    public SuperObject objs[] = new SuperObject[10];
+    Sound SFXController = new Sound();
+    Sound musicController = new Sound();
+    public UI ui = new UI(this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -37,6 +42,12 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHanlder);
         this.setFocusable(true);
+    }
+
+    public void setupGame(){
+        aSetter.setObjects();
+
+        //playMusic(0);
     }
 
     public void startGameThread(){
@@ -81,10 +92,33 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
-
         Graphics2D graphics2D = (Graphics2D) graphics;
+        //TILES
         tileManager.draw(graphics2D);
+        //OBJECTS
+        for (SuperObject obj : objs) {
+            if(obj != null)
+                obj.draw(graphics2D, this);
+        }
+        //PLAYER
         player.draw(graphics2D);
+        ui.draw(graphics2D);
         graphics2D.dispose();
+    }
+
+    //SOUND
+    public void playMusic(int i){
+        musicController.setFile(i);
+        musicController.play();
+        musicController.loop();
+    }
+
+    public void stopMusic(){
+        musicController.stop();
+    }
+
+    public void playSFX(int i){
+        SFXController.setFile(i);
+        SFXController.play();
     }
 }
