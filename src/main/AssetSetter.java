@@ -1,5 +1,6 @@
 package main;
 
+import entity.Npc_OldMan;
 import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Door;
@@ -13,6 +14,7 @@ public class AssetSetter {
     }
 
     public void setObjects(){
+<<<<<<< Updated upstream
         gp.objs[0] = new OBJ_Key();
         gp.objs[0].worldX = 23 * gp.tileSize;
         gp.objs[0].worldY = 7 * gp.tileSize;
@@ -44,6 +46,14 @@ public class AssetSetter {
         gp.objs[7] = new OBJ_Boots();
         gp.objs[7].worldX = 37 * gp.tileSize;
         gp.objs[7].worldY = 42 * gp.tileSize;
+=======
+>>>>>>> Stashed changes
 
+    }
+
+    public void setNpc(){
+        gp.npcs[0] = new Npc_OldMan(gp);
+        gp.npcs[0].worldX = gp.tileSize * 21;
+        gp.npcs[0].worldY = gp.tileSize * 21;
     }
 }

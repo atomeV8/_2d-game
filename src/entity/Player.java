@@ -9,16 +9,20 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity{
-    GamePanel gp;
     KeyHanlder keyHanlder;
 
+<<<<<<< Updated upstream
     public final int screenX, screenY;
     boolean moving = false;
 
     public int nbKeys = 0;
+=======
+
+
+>>>>>>> Stashed changes
 
     public Player(GamePanel gp, KeyHanlder keyHanlder){
-        this.gp = gp;
+        super(gp);
         this.keyHanlder = keyHanlder;
 
         hitbox = new Rectangle(10, 20, 28, 28);
@@ -30,7 +34,7 @@ public class Player extends Entity{
         screenY = gp.screenHeight/2 - gp.tileSize/2;
 
         setDefaultValues();
-        getPlayerImage();
+        getPlayerImages();
     }
 
     public void setDefaultValues(){
@@ -39,6 +43,7 @@ public class Player extends Entity{
         speed = 4;
         direction = "down";
     }
+<<<<<<< Updated upstream
     public void getPlayerImage(){
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_up_1.png"));
@@ -54,6 +59,40 @@ public class Player extends Entity{
         }
     }
 
+=======
+    public void getPlayerImages(){
+        String entityType = "player";
+        idle = setup("idle", entityType);
+        upAnimation[0] = setup("walk_up_00", entityType);
+        upAnimation[1] = setup("walk_up_01", entityType);
+        upAnimation[2] = setup("walk_up_02", entityType);
+        upAnimation[3] = setup("walk_up_03", entityType);
+        upAnimation[4] = setup("walk_up_04", entityType);
+        upAnimation[5] = setup("walk_up_05", entityType);
+        upAnimation[6] = setup("walk_up_06", entityType);
+        rightAnimation[0] = setup("walk_right_00", entityType);
+        rightAnimation[1] = setup("walk_right_01", entityType);
+        rightAnimation[2] = setup("walk_right_02", entityType);
+        rightAnimation[3] = setup("walk_right_03", entityType);
+        rightAnimation[4] = setup("walk_right_04", entityType);
+        rightAnimation[5] = setup("walk_right_05", entityType);
+        rightAnimation[6] = setup("walk_right_06", entityType);
+        leftAnimation[0] = setup("walk_left_00", entityType);
+        leftAnimation[1] = setup("walk_left_01", entityType);
+        leftAnimation[2] = setup("walk_left_02", entityType);
+        leftAnimation[3] = setup("walk_left_03", entityType);
+        leftAnimation[4] = setup("walk_left_04", entityType);
+        leftAnimation[5] = setup("walk_left_05", entityType);
+        leftAnimation[6] = setup("walk_left_06", entityType);
+        downAnimation[0] = setup("walk_down_00", entityType);
+        downAnimation[1] = setup("walk_down_01", entityType);
+        downAnimation[2] = setup("walk_down_02", entityType);
+        downAnimation[3] = setup("walk_down_03", entityType);
+        downAnimation[4] = setup("walk_down_04", entityType);
+        downAnimation[5] = setup("walk_down_05", entityType);
+        downAnimation[6] = setup("walk_down_06", entityType);
+    }
+>>>>>>> Stashed changes
     public void update(){
         moving = false;
         if(keyHanlder.upPressed == true){
@@ -100,6 +139,7 @@ public class Player extends Entity{
 
     public void collisionInteraction(int index){
         if(index != 999){
+<<<<<<< Updated upstream
             String objectName = gp.objs[index].name;
 
             switch(objectName){
@@ -165,4 +205,8 @@ public class Player extends Entity{
         }
         graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
+=======
+        }
+    }
+>>>>>>> Stashed changes
 }

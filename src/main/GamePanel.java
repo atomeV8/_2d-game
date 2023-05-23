@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -28,13 +29,20 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionController CC = new CollisionController(this);
     public AssetSetter aSetter = new AssetSetter(this);
     TileManager tileManager = new TileManager(this);
-    KeyHanlder keyHanlder = new KeyHanlder();
+    KeyHanlder keyHanlder = new KeyHanlder(this);
     Thread gameThread;
+    //ENTITIES AND OBJECTS
     public Player player = new Player(this, keyHanlder);
     public SuperObject objs[] = new SuperObject[10];
+    public Entity npcs[] = new Entity[10];
+    //OOO
     Sound SFXController = new Sound();
     Sound musicController = new Sound();
     public UI ui = new UI(this);
+
+    //GAME SETTINGS
+    public enum GameStates{PLAY, PAUSE};
+    public GameStates gameState;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -45,8 +53,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame(){
+        gameState = GameStates.PLAY;
         aSetter.setObjects();
-
+        aSetter.setNpc();
         //playMusic(0);
     }
 
@@ -87,7 +96,11 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        player.update();
+        if(gameState == GameStates.PLAY){
+            player.update();
+        }else if(gameState == GameStates.PAUSE){
+            //TODO implement pause state code
+        }
     }
 
     public void paintComponent(Graphics graphics){
@@ -99,6 +112,12 @@ public class GamePanel extends JPanel implements Runnable{
         for (SuperObject obj : objs) {
             if(obj != null)
                 obj.draw(graphics2D, this);
+        }
+        //NPC
+        for (int i = 0; i < npcs.length; i++){
+            if(npcs[i] != null){
+                npcs[i].draw(graphics2D);
+            }
         }
         //PLAYER
         player.draw(graphics2D);
