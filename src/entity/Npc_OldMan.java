@@ -2,6 +2,8 @@ package entity;
 
 import main.GamePanel;
 
+import java.util.Random;
+
 public class Npc_OldMan extends Entity{
     public Npc_OldMan(GamePanel gp){
         super(gp);
@@ -10,10 +12,12 @@ public class Npc_OldMan extends Entity{
         speed = 1;
 
         getImages();
+        getNumberOfSprites();
     }
 
     public void getImages(){
         String entityType = "npc";
+        idle = setup("oldman_down_1", entityType);
         upAnimation[0] = setup("oldman_up_1", entityType);
         upAnimation[1] = setup("oldman_up_2", entityType);
         downAnimation[0] = setup("oldman_down_1", entityType);
@@ -22,5 +26,28 @@ public class Npc_OldMan extends Entity{
         leftAnimation[1] = setup("oldman_left_2", entityType);
         rightAnimation[0] = setup("oldman_right_1", entityType);
         rightAnimation[1] = setup("oldman_right_2", entityType);
+    }
+
+    @Override
+    public void setAction(){
+
+        actionLockTime++;
+
+        if(actionLockTime == actionInterval){
+            Random random = new Random();
+            actionInterval = random.nextInt(100) + 50; //sets interval to a time between 50 and 149
+            int i = random.nextInt(100) + 1; //pick a number from 1 to 100 (100 included)
+
+            if(i <= 25){
+                direction = "up";
+            }else if(i <= 50){
+                direction = "down";
+            }else if(i <= 75){
+                direction = "left";
+            }else{
+                direction = "right";
+            }
+            actionLockTime = 0;
+        }
     }
 }

@@ -21,11 +21,8 @@ public class Entity {
     BufferedImage[] downAnimation = new BufferedImage[7];
     public BufferedImage idle;
     public int indexImage = 0;
+    public int nbSpritesForAnimation;
 
-<<<<<<< Updated upstream
-    public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
-=======
->>>>>>> Stashed changes
     public String direction;
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -33,6 +30,7 @@ public class Entity {
     public int hitboxDefaultX, hitboxDefaultY;
     public boolean collisionOn = false;
     boolean moving = false;
+    public int actionLockTime = 0, actionInterval = 120;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -51,6 +49,34 @@ public class Entity {
         return scaledImage;
     }
 
+    public void setAction(){
+
+    }
+
+    public void update(){
+        setAction();
+
+        collisionOn = false;
+        gp.CC.checkTile(this);;
+
+        if(!collisionOn){
+            switch (direction) {
+                case "up" -> worldY -= speed;
+                case "down" -> worldY += speed;
+                case "left" -> worldX -= speed;
+                case "right" -> worldX += speed;
+            }
+            spriteCounter++;
+            if(spriteCounter > 10){
+                if(spriteNum == 1)
+                    spriteNum = 2;
+                else
+                    spriteNum = 1;
+                spriteCounter = 0;
+            }
+        }
+    }
+
     public void draw(Graphics2D graphics){
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -60,55 +86,71 @@ public class Entity {
                 worldY  + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
             BufferedImage image = null;
-            indexImage++;
 
-            switch (direction) {
-                case "up" -> {
-                    if(indexImage >= leftAnimation.length){
-                        indexImage = 0;
+            while(image == null){
+                switch (direction) {
+                    case "up" -> {
+                        if(indexImage >= leftAnimation.length){
+                            indexImage = 0;
+                        }
+                        if(!collisionOn){
+                            image = upAnimation[indexImage];
+                        }
+                        else{
+                            image = idle;
+                        }
                     }
-                    if(moving && !collisionOn){
-                        image = upAnimation[indexImage];
+                    case "down" -> {
+                        if(indexImage >= leftAnimation.length){
+                            indexImage = 0;
+                        }
+                        if(!collisionOn){
+                            image = downAnimation[indexImage];
+                        }
+                        else{
+                            image = idle;
+                        }
                     }
-                    else{
+                    case "left" -> {
+                        if(indexImage >= leftAnimation.length){
+                            indexImage = 0;
+                        }
+                        if(!collisionOn){
+                            image = leftAnimation[indexImage];
+                        }
+                        else{
+                            image = idle;
+                        }
+                    }
+                    case "right" -> {
+                        if (indexImage >= rightAnimation.length) {
+                            indexImage = 0;
+                        }
+                        if (!collisionOn) {
+                            image = rightAnimation[indexImage];
+                        } else {
+                            image = idle;
+                        }
+                    }
+                    case "none" -> {
                         image = idle;
                     }
                 }
-                case "down" -> {
-                    if(indexImage >= leftAnimation.length){
-                        indexImage = 0;
-                    }
-                    if(moving && !collisionOn){
-                        image = downAnimation[indexImage];
-                    }
-                    else{
-                        image = idle;
-                    }
-                }
-                case "left" -> {
-                    if(indexImage >= leftAnimation.length){
-                        indexImage = 0;
-                    }
-                    if(moving && !collisionOn){
-                        image = leftAnimation[indexImage];
-                    }
-                    else{
-                        image = idle;
-                    }
-                }
-                case "right" -> {
-                    if (indexImage >= rightAnimation.length) {
-                        indexImage = 0;
-                    }
-                    if (moving && !collisionOn) {
-                        image = rightAnimation[indexImage];
-                    } else {
-                        image = idle;
-                    }
+                if(image == null){
+                    indexImage = 0;
                 }
             }
-            graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                indexImage++;
         }
 
+    }
+
+    public void getNumberOfSprites(){
+        for (BufferedImage sprite: downAnimation //all directions have to have the same amount of sprites, or it will look weird
+             ) {
+            if(sprite != null)
+                nbSpritesForAnimation++;
+        }
     }
 }

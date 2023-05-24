@@ -98,12 +98,19 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         if(gameState == GameStates.PLAY){
             player.update();
+            for (Entity npc: npcs
+                 ) {
+                if(npc != null){
+                    npc.update();
+                }
+            }
         }else if(gameState == GameStates.PAUSE){
             //TODO implement pause state code
         }
     }
 
-    public void paintComponent(Graphics graphics){
+    @Override
+    protected void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         //TILES
@@ -114,9 +121,9 @@ public class GamePanel extends JPanel implements Runnable{
                 obj.draw(graphics2D, this);
         }
         //NPC
-        for (int i = 0; i < npcs.length; i++){
-            if(npcs[i] != null){
-                npcs[i].draw(graphics2D);
+        for (Entity npc : npcs) {
+            if (npc != null) {
+                npc.draw(graphics2D);
             }
         }
         //PLAYER

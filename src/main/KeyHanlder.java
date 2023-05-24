@@ -7,15 +7,12 @@ public class KeyHanlder implements KeyListener {
 
     public GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
-<<<<<<< Updated upstream
-=======
     //DEBUG
     boolean checkDrawTime = false;
 
     public KeyHanlder(GamePanel gp){
         this.gp = gp;
     }
->>>>>>> Stashed changes
     @Override
     public void keyTyped(KeyEvent e) {
     }

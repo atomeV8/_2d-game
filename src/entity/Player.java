@@ -11,15 +11,8 @@ import java.io.IOException;
 public class Player extends Entity{
     KeyHanlder keyHanlder;
 
-<<<<<<< Updated upstream
-    public final int screenX, screenY;
-    boolean moving = false;
-
-    public int nbKeys = 0;
-=======
 
 
->>>>>>> Stashed changes
 
     public Player(GamePanel gp, KeyHanlder keyHanlder){
         super(gp);
@@ -43,23 +36,6 @@ public class Player extends Entity{
         speed = 4;
         direction = "down";
     }
-<<<<<<< Updated upstream
-    public void getPlayerImage(){
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_down_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/boy_left_2.png"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-=======
     public void getPlayerImages(){
         String entityType = "player";
         idle = setup("idle", entityType);
@@ -92,24 +68,27 @@ public class Player extends Entity{
         downAnimation[5] = setup("walk_down_05", entityType);
         downAnimation[6] = setup("walk_down_06", entityType);
     }
->>>>>>> Stashed changes
     public void update(){
         moving = false;
-        if(keyHanlder.upPressed == true){
+        if(keyHanlder.upPressed){
             moving = true;
             direction = "up";
         }
-        if(keyHanlder.downPressed == true){
+        if(keyHanlder.downPressed){
             moving = true;
             direction = "down";
         }
-        if(keyHanlder.rightPressed == true){
+        if(keyHanlder.rightPressed){
             moving = true;
             direction = "right";
         }
-        if(keyHanlder.leftPressed == true){
+        if(keyHanlder.leftPressed){
             moving = true;
             direction = "left";
+        }
+        if(!keyHanlder.downPressed && !keyHanlder.upPressed && !keyHanlder.leftPressed && !keyHanlder.rightPressed){
+            moving = false;
+            direction = "none";
         }
 
         collisionOn = false;
@@ -119,12 +98,12 @@ public class Player extends Entity{
         int objIndex = gp.CC.checkObject(this, true);
         collisionInteraction(objIndex);
 
-        if(collisionOn == false && moving){
-            switch(direction){
-                case"up": worldY -= speed; break;
-                case"down": worldY += speed; break;
-                case"left": worldX -= speed; break;
-                case"right": worldX += speed; break;
+        if(!collisionOn && moving){
+            switch (direction) {
+                case "up" -> worldY -= speed;
+                case "down" -> worldY += speed;
+                case "left" -> worldX -= speed;
+                case "right" -> worldX += speed;
             }
             spriteCounter++;
             if(spriteCounter > 10){
@@ -139,74 +118,6 @@ public class Player extends Entity{
 
     public void collisionInteraction(int index){
         if(index != 999){
-<<<<<<< Updated upstream
-            String objectName = gp.objs[index].name;
-
-            switch(objectName){
-                case "Key":
-                    nbKeys++;
-                    gp.objs[index] = null;
-                    gp.playSFX(1);
-                    gp.ui.showMessage("You got a KEY!!!");
-                    break;
-                case "Door":
-                    if(nbKeys > 0){
-                        gp.objs[index] = null;
-                        nbKeys--;
-                        gp.ui.showMessage("You opened a DOOR!!!");
-                    }else{
-                        gp.ui.showMessage("You need a key to open a door");
-                    }
-                    break;
-                case "Boots":
-                    speed += 2;
-                    gp.objs[index] = null;
-                    gp.ui.showMessage("You equipped RUNNING BOOTS!!!");
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    //gp.stopMusic();
-                    //gp.playSFX(3); //The sound of the end
-                    break;
-            }
         }
     }
-
-    public void draw(Graphics2D graphics){
-//        graphics.setColor(Color.white);
-//        graphics.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
-        BufferedImage image = null;
-
-        switch(direction){
-            case "up":
-                if(spriteNum == 1)
-                    image = up1;
-                else if(spriteNum == 2)
-                    image = up2;
-                break;
-            case "down":
-                if(spriteNum == 1)
-                    image = down1;
-                else if(spriteNum == 2)
-                    image = down2;
-                break;
-            case "left":
-                if(spriteNum == 1)
-                    image = left1;
-                else if(spriteNum == 2)
-                    image = left2;
-                break;
-            case "right":
-                if(spriteNum == 1)
-                    image = right1;
-                else if(spriteNum == 2)
-                    image = right2;
-                break;
-        }
-        graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-    }
-=======
-        }
-    }
->>>>>>> Stashed changes
 }
