@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionController CC = new CollisionController(this);
     public AssetSetter aSetter = new AssetSetter(this);
     TileManager tileManager = new TileManager(this);
-    KeyHanlder keyHanlder = new KeyHanlder(this);
+    public KeyHanlder keyHanlder = new KeyHanlder(this);
     Thread gameThread;
     //ENTITIES AND OBJECTS
     public Player player = new Player(this, keyHanlder);
@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
 
     //GAME SETTINGS
-    public enum GameStates{PLAY, PAUSE};
+    public enum GameStates{PLAY, PAUSE, DIALOGUE};
     public GameStates gameState;
 
     public GamePanel() {

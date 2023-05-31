@@ -12,6 +12,7 @@ public class Npc_OldMan extends Entity{
         speed = 1;
 
         getImages();
+        setDialogue();
         getNumberOfSprites();
     }
 
@@ -27,7 +28,12 @@ public class Npc_OldMan extends Entity{
         rightAnimation[0] = setup("oldman_right_1", entityType);
         rightAnimation[1] = setup("oldman_right_2", entityType);
     }
-
+    public void setDialogue(){
+        dialogues[0] = "Howdy son!";
+        dialogues[1] = "What a beautiful day innit?";
+        dialogues[2] = "Sometimes I wonder if I shouldn't go \nfind that treasure myself...";
+        dialogues[3] = "AYAYA AYAYA AYAYA";
+    }
     @Override
     public void setAction(){
 
@@ -49,5 +55,9 @@ public class Npc_OldMan extends Entity{
             }
             actionLockTime = 0;
         }
+    }
+
+    public void speak(){
+        super.speak();
     }
 }

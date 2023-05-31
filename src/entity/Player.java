@@ -3,10 +3,7 @@ package entity;
 import main.GamePanel;
 import main.KeyHanlder;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player extends Entity{
     KeyHanlder keyHanlder;
@@ -18,7 +15,7 @@ public class Player extends Entity{
         super(gp);
         this.keyHanlder = keyHanlder;
 
-        hitbox = new Rectangle(10, 20, 28, 28);
+        hitbox = new Rectangle(10, 20, 22, 22);
 
         hitboxDefaultX = hitbox.x;
         hitboxDefaultY = hitbox.y;
@@ -88,16 +85,22 @@ public class Player extends Entity{
         }
         if(!keyHanlder.downPressed && !keyHanlder.upPressed && !keyHanlder.leftPressed && !keyHanlder.rightPressed){
             moving = false;
-            direction = "none";
         }
 
         collisionOn = false;
 
+        //Collision detection between player and tiles
         gp.CC.checkTile(this);
 
+        //Detection of player touching an item
         int objIndex = gp.CC.checkObject(this, true);
-        collisionInteraction(objIndex);
+        interactionWithItem(objIndex);
 
+        //Collision detection between player and other entities
+        int npcIndex = gp.CC.checkEntity(this, gp.npcs);
+        interactionWithNPC(npcIndex);
+
+        //If collisionOn is false and moving is true, the player can move
         if(!collisionOn && moving){
             switch (direction) {
                 case "up" -> worldY -= speed;
@@ -105,19 +108,22 @@ public class Player extends Entity{
                 case "left" -> worldX -= speed;
                 case "right" -> worldX += speed;
             }
-            spriteCounter++;
-            if(spriteCounter > 10){
-                if(spriteNum == 1)
-                    spriteNum = 2;
-                else
-                    spriteNum = 1;
-                spriteCounter = 0;
-            }
+            spriteCounter += 11;
         }
     }
 
-    public void collisionInteraction(int index){
-        if(index != 999){
+    private void interactionWithNPC(int npcIndex) {
+        if(npcIndex != 999){
+            if(gp.keyHanlder.interactKeyPressed){
+                gp.gameState = GamePanel.GameStates.DIALOGUE;
+                gp.npcs[npcIndex].speak();
+            }
+        }
+        gp.keyHanlder.interactKeyPressed = false;
+    }
+
+    public void interactionWithItem(int itemIndex){
+        if(itemIndex != 999){
         }
     }
 }

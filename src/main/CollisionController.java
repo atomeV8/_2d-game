@@ -120,4 +120,96 @@ public class CollisionController {
 
         return  index;
     }
+
+    public int checkEntity(Entity entity, Entity[] targets){
+        int index = 999;
+
+        for(int i = 0; i < targets.length; i++){
+            if(targets[i] != null){
+                entity.hitbox.x = entity.worldX + entity.hitbox.x;
+                entity.hitbox.y = entity.worldY + entity.hitbox.y;
+
+                targets[i].hitbox.x = targets[i].worldX + targets[i].hitbox.x;
+                targets[i].hitbox.y = targets[i].worldY + targets[i].hitbox.y;
+
+                switch (entity.direction) {
+                    case "up" -> {
+                        entity.hitbox.y -= entity.speed;
+                        if (entity.hitbox.intersects(targets[i].hitbox)) {
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                    }
+                    case "down" -> {
+                        entity.hitbox.y += entity.speed;
+                        if (entity.hitbox.intersects(targets[i].hitbox)) {
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                    }
+                    case "left" -> {
+                        entity.hitbox.x -= entity.speed;
+                        if (entity.hitbox.intersects(targets[i].hitbox)) {
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                    }
+                    case "right" -> {
+                        entity.hitbox.x += entity.speed;
+                        if (entity.hitbox.intersects(targets[i].hitbox)) {
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                    }
+                }
+                entity.hitbox.x = entity.hitboxDefaultX;
+                entity.hitbox.y = entity.hitboxDefaultY;
+                targets[i].hitbox.x = targets[i].hitboxDefaultX;
+                targets[i].hitbox.y = targets[i].hitboxDefaultY;
+            }
+        }
+
+        return  index;
+    }
+
+    public void checkPlayer(Entity entity){
+        if(gp.player != null){
+            entity.hitbox.x = entity.worldX + entity.hitbox.x;
+            entity.hitbox.y = entity.worldY + entity.hitbox.y;
+
+            gp.player.hitbox.x = gp.player.worldX + gp.player.hitbox.x;
+            gp.player.hitbox.y = gp.player.worldY + gp.player.hitbox.y;
+
+            switch (entity.direction) {
+                case "up" -> {
+                    entity.hitbox.y -= entity.speed;
+                    if (entity.hitbox.intersects(gp.player.hitbox)) {
+                        entity.collisionOn = true;
+                    }
+                }
+                case "down" -> {
+                    entity.hitbox.y += entity.speed;
+                    if (entity.hitbox.intersects(gp.player.hitbox)) {
+                        entity.collisionOn = true;
+                    }
+                }
+                case "left" -> {
+                    entity.hitbox.x -= entity.speed;
+                    if (entity.hitbox.intersects(gp.player.hitbox)) {
+                        entity.collisionOn = true;
+                    }
+                }
+                case "right" -> {
+                    entity.hitbox.x += entity.speed;
+                    if (entity.hitbox.intersects(gp.player.hitbox)) {
+                        entity.collisionOn = true;
+                    }
+                }
+            }
+            entity.hitbox.x = entity.hitboxDefaultX;
+            entity.hitbox.y = entity.hitboxDefaultY;
+            gp.player.hitbox.x = gp.player.hitboxDefaultX;
+            gp.player.hitbox.y = gp.player.hitboxDefaultY;
+        }
+    }
 }

@@ -32,6 +32,10 @@ public class Entity {
     boolean moving = false;
     public int actionLockTime = 0, actionInterval = 120;
 
+
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
+
     public Entity(GamePanel gp){
         this.gp = gp;
     }
@@ -57,7 +61,9 @@ public class Entity {
         setAction();
 
         collisionOn = false;
-        gp.CC.checkTile(this);;
+        gp.CC.checkTile(this);
+        gp.CC.checkObject(this, false);
+        gp.CC.checkPlayer(this);
 
         if(!collisionOn){
             switch (direction) {
@@ -67,13 +73,6 @@ public class Entity {
                 case "right" -> worldX += speed;
             }
             spriteCounter++;
-            if(spriteCounter > 10){
-                if(spriteNum == 1)
-                    spriteNum = 2;
-                else
-                    spriteNum = 1;
-                spriteCounter = 0;
-            }
         }
     }
 
@@ -132,7 +131,7 @@ public class Entity {
                             image = idle;
                         }
                     }
-                    case "none" -> {
+                    default -> {
                         image = idle;
                     }
                 }
@@ -140,10 +139,12 @@ public class Entity {
                     indexImage = 0;
                 }
             }
-                graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            graphics.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            if(spriteCounter > 10){
                 indexImage++;
+                spriteCounter = 0;
+            }
         }
-
     }
 
     public void getNumberOfSprites(){
@@ -151,6 +152,21 @@ public class Entity {
              ) {
             if(sprite != null)
                 nbSpritesForAnimation++;
+        }
+    }
+
+    public void speak(){
+        if(dialogues[dialogueIndex] == null){
+            dialogueIndex = 0;
+        }
+        gp.ui.dialogueText = dialogues[dialogueIndex];
+        dialogueIndex++;
+
+        switch (gp.player.direction) {
+            case "up" -> this.direction = "down";
+            case "down" -> this.direction = "up";
+            case "left" -> this.direction = "right";
+            case "right" -> this.direction = "left";
         }
     }
 }

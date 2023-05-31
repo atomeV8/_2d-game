@@ -1,25 +1,26 @@
 package main;
 
-import object.OBJ_Key;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class UI{
     GamePanel gp;
     Graphics2D g2;
-    Font arial40, arial80B;
+    Font rainyhearts;
     public boolean showMessage = false;
     public String message = "";
-    int messageLifespan = 0;
-    public boolean gameFinished = false;
-    double playTime;
-    DecimalFormat df = new DecimalFormat("#0.00");
+    //public boolean gameFinished = false;
+    public String dialogueText;
     public UI(GamePanel gp){
         this.gp = gp;
-        arial40 = new Font("Arial", Font.PLAIN, 40);
-        arial80B = new Font("Arial", Font.BOLD, 80);
+        try {
+            InputStream is = getClass().getResourceAsStream("/res/fonts/rainyhearts.ttf");
+            assert is != null;
+            rainyhearts = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showMessage(String text){
@@ -29,7 +30,7 @@ public class UI{
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-        g2.setFont(arial40);
+        g2.setFont(rainyhearts);
         g2.setColor(Color.white);
 
         switch(gp.gameState){
@@ -39,10 +40,36 @@ public class UI{
             case PAUSE -> {
                 drawPauseScreen();
             }
+            case DIALOGUE -> {
+                drawDialogueScreen();
+            }
             default -> {
 
             }
         }
+    }
+
+    private void drawDialogueScreen() {
+        int x = gp.tileSize * 2, y = gp.tileSize / 2, width = gp.screenWidth - (gp.tileSize * 4), height = gp.tileSize * 4;
+        drawWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize - 10;
+        y += gp.tileSize;
+
+        for (String line : dialogueText.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40;
+        }
+    }
+
+    public void drawWindow(int x, int y, int width, int height){
+        g2.setColor(new Color(0,0,0, 200));
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        g2.setColor(new Color(255,255,255));
+        g2.setStroke(new BasicStroke(4));
+        g2.drawRoundRect(x, y, width, height, 35, 35);
     }
 
     public void drawPauseScreen(){
