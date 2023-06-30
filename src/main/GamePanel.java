@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
 
     //GAME SETTINGS
-    public enum GameStates{PLAY, PAUSE, DIALOGUE};
+    public enum GameStates{PLAY, PAUSE, DIALOGUE, TITLE_SCREEN}
     public GameStates gameState;
 
     public GamePanel() {
@@ -53,10 +53,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame(){
-        gameState = GameStates.PLAY;
+        gameState = GameStates.TITLE_SCREEN;
         aSetter.setObjects();
         aSetter.setNpc();
-        //playMusic(0);
     }
 
     public void startGameThread(){
@@ -113,22 +112,28 @@ public class GamePanel extends JPanel implements Runnable{
     protected void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        //TILES
-        tileManager.draw(graphics2D);
-        //OBJECTS
-        for (SuperObject obj : objs) {
-            if(obj != null)
-                obj.draw(graphics2D, this);
+
+        if(gameState == GameStates.TITLE_SCREEN){
+            ui.draw(graphics2D);
         }
-        //NPC
-        for (Entity npc : npcs) {
-            if (npc != null) {
-                npc.draw(graphics2D);
+        else{
+            //TILES
+            tileManager.draw(graphics2D);
+            //OBJECTS
+            for (SuperObject obj : objs) {
+                if(obj != null)
+                    obj.draw(graphics2D, this);
             }
+            //NPC
+            for (Entity npc : npcs) {
+                if (npc != null) {
+                    npc.draw(graphics2D);
+                }
+            }
+            //PLAYER
+            player.draw(graphics2D);
+            ui.draw(graphics2D);
         }
-        //PLAYER
-        player.draw(graphics2D);
-        ui.draw(graphics2D);
         graphics2D.dispose();
     }
 
